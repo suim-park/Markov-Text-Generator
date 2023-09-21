@@ -1,4 +1,9 @@
 # Markov-Text-Generator :pencil:
+## Information
+* `Subject`: Introduction to Natural Language Processing
+* `Professor`: Patrick Wang
+* `Assignment`: A bare-bones Markov text generator
+* `Name`: Suim Park
 
 ## Python File: mtg.py
 ```Python
