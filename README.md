@@ -295,7 +295,7 @@ def finish_sentence(sentence, n, corpus, randomize=False):
       ```
   - Output: __stochastic on, backoff off__
     ```Python
-    ['he', 'received', 'the', 'letter', 'south-east', 'execution', 'genuine', 'wanton', 'opposite', 'instructions']
+    ['he', 'received', 'the', 'letter', 'from', 'the', 'most', 'proper', 'situation', 'of']
     ```
 </br>
 
@@ -303,7 +303,7 @@ def finish_sentence(sentence, n, corpus, randomize=False):
     - Test:
       ```Python
       sentence = ['her', 'mind']
-      n = 2
+      n = 3
       corpus = nltk.word_tokenize(
       nltk.corpus.gutenberg.raw('austen-sense.txt').lower()
       )
@@ -311,7 +311,7 @@ def finish_sentence(sentence, n, corpus, randomize=False):
       ```
   - Output: __stochastic on, backoff off__
     ```Python
-    ['her', 'mind', '.']
+    ['her', 'mind', 'was', 'heightened', 'by', 'circumstances', 'which', 'ought', 'not', 'to']
     ```
 </br>
 
