@@ -1,5 +1,3 @@
-# Markov-Text-Generator
-```Python
 import random
 
 
@@ -84,6 +82,3 @@ def finish_sentence(sentence, n, corpus, randomize=False):
         generated_tokens.append(next_word)
 
     return generated_tokens
-```
-
-## Test case
