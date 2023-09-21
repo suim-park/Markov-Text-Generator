@@ -19,7 +19,7 @@ def train_ngram_model(tokens, n):
 def predict_next_word(ngram_model, input_tokens, n, randomize=False):
     if n == 1:  # Use unigram model when n is 1
         uni_gen = generate_unigram(corpus)
-        next_word = generate_text(uni_gen, True)
+        next_word = generate_text(uni_gen, randomize)
     else:
         ngram = tuple(input_tokens[-n + 1 :])  # Current N-1 tokens
         if ngram in ngram_model:
