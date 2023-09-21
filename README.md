@@ -1,104 +1,14 @@
 # Markov-Text-Generator :pencil:
-## Information
-* `Subject`: Introduction to Natural Language Processing
-* `Professor`: Patrick Wang
-* `Assignment`: A bare-bones Markov text generator
-* `Name`: Suim Park
+## Information :computer:
+* `Subject`: __Introduction to Natural Language Processing__
+* `Professor`: __Patrick Wang__
+* `Assignment`: __A bare-bones Markov text generator__
+* `Name`: __Suim Park__
 
-## Python File: mtg.py
-```Python
-import random
-
-
-# N-gram model train function
-def train_ngram_model(tokens, n):
-    ngram_model = {}
-    for i in range(len(tokens) - n + 1):
-        # Current N-1 tokens
-        ngram = tuple(tokens[i : i + n - 1])
-        # Next word
-        next_word = tokens[i + n - 1]
-        if ngram in ngram_model:
-            ngram_model[ngram].append(next_word)
-        else:
-            ngram_model[ngram] = [next_word]
-    return ngram_model
-
-
-# Predict the next word given the current input tokens and N-gram model
-def predict_next_word(ngram_model, input_tokens, n, randomize=False):
-    if n == 1:  # Use unigram model when n is 1
-        uni_gen = generate_unigram(corpus)
-        next_word = generate_text(uni_gen, randomize)
-    else:
-        ngram = tuple(input_tokens[-n + 1 :])  # Current N-1 tokens
-        if ngram in ngram_model:
-            if randomize: # schocastic mode
-                next_word = random.choice(ngram_model[ngram])
-            else:
-                # Select the most frequent word (determistic mode)
-                candidates = ngram_model[ngram]
-                sorted_candidates = sorted(
-                    candidates,
-                    key=lambda word: (-candidates.count(word), candidates.index(word)),
-                )
-                next_word = sorted_candidates[0]
-        else:
-            # Backoff: Try with N-1 gram
-            next_word = predict_next_word(ngram_model, input_tokens, n - 1, randomize)
-
-    # Check for punctuation marks
-    if next_word in (".", "?", "!"):
-        input_tokens.append(next_word)
-        return None
-
-    return next_word
-
-
-# Generate unigram
-def generate_unigram(corpus):
-    unigram_model = {}
-    for word in corpus:
-        if word in unigram_model:
-            unigram_model[word] += 1
-        else:
-            unigram_model[word] = 1
-    return unigram_model
-
-
-# Text generation function for unigram
-def generate_text(unigram_model, randomize=False):
-    if randomize: # schocastic mode
-        # When randomize is True, select a random word among high-frequency words
-        all_words = list(unigram_model.keys())
-        next_word = random.choice(all_words)
-    else:
-        # When randomize is False, select the most frequent word (determistic)
-        next_word = max(unigram_model, key=lambda k: unigram_model[k])
-    return next_word
-
-
-# Generate text to complete a sentence using the trained N-gram model
-def finish_sentence(sentence, n, corpus, randomize=False):
-    # Train the N-gram model
-    ngram_model = train_ngram_model(corpus, n)
-
-    generated_tokens = sentence[:]
-    while (
-        len(generated_tokens) < 10
-    ):  # Repeat until the length of generated_tokens is less than 10
-        next_word = predict_next_word(ngram_model, generated_tokens, n, randomize)
-        if next_word is None:
-            break
-        generated_tokens.append(next_word)
-
-    return generated_tokens
-```
-
-## Test case
+## Test case :pushpin:
 
 * __`Case 1`__
-    - Test:
+    - Test
       ```Python
       sentence = ['she', 'was', 'not']
       n = 3
@@ -114,7 +24,7 @@ def finish_sentence(sentence, n, corpus, randomize=False):
 </br>
 
 * __`Case 2`__
-    - Test:
+    - Test
       ```Python
       sentence = ['she', 'was', 'not']
       n = 2
@@ -130,7 +40,7 @@ def finish_sentence(sentence, n, corpus, randomize=False):
 </br>
 
 * __`Case 3`__
-    - Test:
+    - Test
       ```Python
       sentence = ['she', 'was', 'not']
       n = 1
@@ -146,7 +56,7 @@ def finish_sentence(sentence, n, corpus, randomize=False):
 </br>
 
 * __`Case 4`__
-    - Test:
+    - Test
       ```Python
       sentence = ['she', 'was', 'not']
       n = 4
@@ -162,7 +72,7 @@ def finish_sentence(sentence, n, corpus, randomize=False):
 </br>
 
 * __`Case 5`__
-    - Test:
+    - Test
       ```Python
       sentence = ['she', 'was', 'not', 'in']
       n = 5
@@ -178,7 +88,7 @@ def finish_sentence(sentence, n, corpus, randomize=False):
 </br>
 
 * __`Case 6`__
-    - Test:
+    - Test
       ```Python
       sentence = ['she', 'was', 'for']
       n = 3
@@ -195,7 +105,7 @@ def finish_sentence(sentence, n, corpus, randomize=False):
 </br>
 
 * __`Case 7`__
-    - Test:
+    - Test
       ```Python
       sentence = ['she', 'was', 'not']
       n = 3
@@ -211,7 +121,7 @@ def finish_sentence(sentence, n, corpus, randomize=False):
 </br>
 
 * __`Case 8`__
-    - Test:
+    - Test
       ```Python
       sentence = ['Marianne's']
       n = 1
@@ -227,7 +137,7 @@ def finish_sentence(sentence, n, corpus, randomize=False):
 </br>
 
 * __`Case 9`__
-    - Test:
+    - Test
       ```Python
       sentence = ['Marianne's']
       n = 1
@@ -243,7 +153,7 @@ def finish_sentence(sentence, n, corpus, randomize=False):
 </br>
 
 * __`Case 10`__
-    - Test:
+    - Test
       ```Python
       sentence = ['but', 'her']
       n = 2
@@ -259,7 +169,7 @@ def finish_sentence(sentence, n, corpus, randomize=False):
 </br>
 
 * __`Case 11`__
-    - Test:
+    - Test
       ```Python
       sentence = ['he', 'was', 'not', 'in']
       n = 5
@@ -275,7 +185,7 @@ def finish_sentence(sentence, n, corpus, randomize=False):
 </br>
 
 * __`Case 12`__
-    - Test:
+    - Test
       ```Python
       sentence = ['he', 'received', 'the', 'letter']
       n = 4
@@ -291,7 +201,7 @@ def finish_sentence(sentence, n, corpus, randomize=False):
 </br>
 
 * __`Case 13`__
-    - Test:
+    - Test
       ```Python
       sentence = ['he', 'received', 'the', 'letter']
       n = 4
@@ -307,7 +217,7 @@ def finish_sentence(sentence, n, corpus, randomize=False):
 </br>
 
 * __`Case 14`__
-    - Test:
+    - Test
       ```Python
       sentence = ['her', 'mind']
       n = 3
@@ -323,7 +233,7 @@ def finish_sentence(sentence, n, corpus, randomize=False):
 </br>
 
 * __`Case 15`__
-    - Test:
+    - Test
       ```Python
       sentence = ['they', 'require']
       n = 2
