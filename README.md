@@ -25,6 +25,7 @@ def train_ngram_model(tokens, n):
     return ngram_model
 
 
+# Predict the next word given the current input tokens and N-gram model
 def predict_next_word(ngram_model, input_tokens, n, randomize=False):
     if n == 1:  # Use unigram model when n is 1
         uni_gen = generate_unigram(corpus)
@@ -32,10 +33,10 @@ def predict_next_word(ngram_model, input_tokens, n, randomize=False):
     else:
         ngram = tuple(input_tokens[-n + 1 :])  # Current N-1 tokens
         if ngram in ngram_model:
-            if randomize:
+            if randomize: # schocastic mode
                 next_word = random.choice(ngram_model[ngram])
             else:
-                # Select the most frequent word
+                # Select the most frequent word (determistic mode)
                 candidates = ngram_model[ngram]
                 sorted_candidates = sorted(
                     candidates,
@@ -65,18 +66,19 @@ def generate_unigram(corpus):
     return unigram_model
 
 
-# Text generation function
+# Text generation function for unigram
 def generate_text(unigram_model, randomize=False):
-    if randomize:
+    if randomize: # schocastic mode
         # When randomize is True, select a random word among high-frequency words
         all_words = list(unigram_model.keys())
         next_word = random.choice(all_words)
     else:
-        # When randomize is False, select the most frequent word
+        # When randomize is False, select the most frequent word (determistic)
         next_word = max(unigram_model, key=lambda k: unigram_model[k])
     return next_word
 
 
+# Generate text to complete a sentence using the trained N-gram model
 def finish_sentence(sentence, n, corpus, randomize=False):
     # Train the N-gram model
     ngram_model = train_ngram_model(corpus, n)
