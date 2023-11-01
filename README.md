@@ -1,4 +1,4 @@
-# Markov-Text-Generator :pencil:
+# HW 1. Markov-Text-Generator :pencil:
 ## Information :computer:
 * `Subject`: __Introduction to Natural Language Processing__
 * `Professor`: __Patrick Wang__
